@@ -1,0 +1,32 @@
+* PAGE: LoginPage
+    - /login
+    - optional sign up page
+
+* Header with 
+    - logged in user 
+    - menu
+        - logout
+        - toggle answered/unanswered
+
+* PAGE: Homepage
+    - /
+    - poll list 
+
+* Poll List
+
+* Poll
+    - just text
+
+* PAGE: Detailed pool
+    - /question/:question_id
+    - Text 
+    - avatar of poster 
+    - answered - show selection
+    - unanswered - percentage 
+
+* PAGE: Post question
+    - /add
+
+* PAGE: Leaderboard
+    - /leaderboard
+    - list of question asked, question answered
