@@ -19,8 +19,7 @@ export default function questions (state = {}, action) {
         [action.question.id] : {...action.question}
       }
     case Actions.PLACE_VOTE :
-      console.log("ACTION PLACE_VOTE:", state, action);
-
+ 
       let optionOneVotes = state[action.vote.questionId].optionOne.votes;
       if (action.vote.selectedOption === 1) optionOneVotes.push(action.vote.userId);
       let optionTwoVotes = state[action.vote.questionId].optionTwo.votes;
@@ -40,7 +39,6 @@ export default function questions (state = {}, action) {
           } 
         }
       };
-      console.log("OBJECT", obj);
       return obj  
       
     default :

@@ -1,5 +1,9 @@
+/**
+ *  Main Application Component
+ * 
+ */
 import React from 'react';
-import {Routes, Route, useParams} from 'react-router-dom';
+import {Routes, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import QuestionList from './QuestionList';
 import AddQuestion from './AddQuestion';
@@ -15,16 +19,13 @@ import {getInitialData} from '../actions/shared';
 class App extends React.Component {
 
   componentDidMount() {
+    // Read all neccessary data from backend
+    // TODO: In real app this would probably be done after login
     this.props.dispatch(getInitialData());
   }
 
-  
-
   render() {
     const userid = this.props.loginUser.id;
-
-    console.log("USER", userid);
-    console.log(this.props);
 
     return (
       <div className="App">
@@ -49,6 +50,9 @@ class App extends React.Component {
   }
 }
 
+/**
+ *  Component needs loginUser from Store
+*/
 function mapProps({loginUser}) {
   return (
     {

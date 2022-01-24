@@ -4,7 +4,7 @@ import { getUsers } from './users';
 
 export function getInitialData () {
   return (dispatch) => {
-    console.log("GET INITIAL DATA");
+
     return Promise.all([
       _getQuestions(),
       _getUsers(),

@@ -47,7 +47,7 @@ function mapProps ({ questions, loginUser }) {
         }
         return res;
   }, {});
-  console.log(qidsStatus);
+
   return {
     qids, 
     qidsStatus,

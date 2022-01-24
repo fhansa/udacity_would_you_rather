@@ -17,7 +17,6 @@ function QuestionDetails(props) {
 
   const {question, author, questionStatus, currentUser} = props;
 
-
   const optionOneVotes = question.optionOne.votes.length;
   const optionTwoVotes = question.optionTwo.votes.length;
   const sumVotes = optionTwoVotes + optionOneVotes;
@@ -38,6 +37,10 @@ function QuestionDetails(props) {
     nav("/");
   }
 
+  const optionOneSelectedByUser = question.optionOne.votes.includes(currentUser.id);
+  const optionTwoSelectedByUser = question.optionTwo.votes.includes(currentUser.id);
+
+
   return (
     <div className="question-details">
         <div className="author">
@@ -54,7 +57,7 @@ function QuestionDetails(props) {
           <h3>Would you rather...</h3>
           <div className="question-options">
             <div className="option">
-              <p>{question && question.optionOne.text}</p> 
+              <p className={optionOneSelectedByUser ? "question_answered" : ""} >{question && question.optionOne.text}</p> 
 
               {
                 questionStatus === "unanswered" && <button onClick={ () => handleVote(1) }>Vote</button>
@@ -68,7 +71,7 @@ function QuestionDetails(props) {
 
             </div>
             <div className="option">
-              <p>{question && question.optionTwo.text}</p> 
+              <p className={optionTwoSelectedByUser ? "question_answered" : ""}>{question && question.optionTwo.text}</p> 
 
               {
                 questionStatus === "unanswered" && <button onClick={() => handleVote(2) }>Vote</button>
@@ -99,6 +102,7 @@ function mapProps({questions, users, loginUser}, props) {
   const author = users[question.author];
   const currentUser = users[loginUser.id];
   const questionStatus = Object.keys(currentUser.answers).includes(questionId) ? "answered" : "unanswered";
+
   return (
     {
       question,

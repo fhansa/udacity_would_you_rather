@@ -23,9 +23,6 @@ export function placeVote(vote) {
 
 export function addQuestion(newQuestion) {
 
-
-  console.log("ADD_Q_ACTION", newQuestion);
-
   // Generate an ID if not already generated
   const id = newQuestion.id && questionNewId();
 

@@ -16,7 +16,9 @@ function selectLeaderboard(state) {
       asked: u.questions.length,
       answered: Object.keys(u.answers).length
     }
-  )).sort( (a,b) => a.totQuestions > b.totQuestions)
+  )).sort( (a,b) =>  b.totQuestions - a.totQuestions)
+
+  console.log(users);
 
   return users;
 
@@ -36,7 +38,7 @@ function QuestionDetails(props) {
       <ul>
         {
           leaderboard.map( l => (
-            <li>
+            <li key={l.user.id}>
               <Avatar user={l.user} /> 
               <p>{l.user.name}</p>
               <p>Question asked: {l.asked}</p>

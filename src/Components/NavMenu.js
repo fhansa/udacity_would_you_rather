@@ -26,7 +26,6 @@ export default function NavMenu(props) {
             <NavLink to="/" onClick={handleLogout}>Logout</NavLink> 
           </span>
         }
-        { !loggedIn && <NavLink to="/signup">Sign up</NavLink>}
         { !loggedIn && <NavLink to="/login">Login</NavLink>}
       </div>
     </div>

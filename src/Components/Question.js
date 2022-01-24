@@ -18,9 +18,9 @@ function Question(props) {
       <Link to={"question/" + question.id }>
         <h4 className="question-header">Which is worse???</h4>
         <div className="question-answers">
-          <span className={optionOneSelected && 'question_selected' }>{question && question.optionOne.text}</span>
+          <span className={optionOneSelected ? 'question_selected' : "" }>{question && question.optionOne.text}</span>
           
-          <span className={optionTwoSelected && 'question_selected' }>{question && question.optionTwo.text}</span>
+          <span className={optionTwoSelected ? 'question_selected' : ""}>{question && question.optionTwo.text}</span>
         </div>
       </Link> 
     </div>

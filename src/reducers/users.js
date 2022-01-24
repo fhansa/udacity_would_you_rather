@@ -9,7 +9,6 @@ export default function users (state = {}, action) {
         ...action.users
       }
     case Actions.ADD_QUESTION_TO_AUTHOR :
-      console.log("INSIDE REDUCER", state, action);
       const author = state[action.author.id];
       author.questions.push(action.questionId);
       return {

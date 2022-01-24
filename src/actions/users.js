@@ -19,8 +19,6 @@ export function addAnswerToUser(answer) {
 
 export function addQuestionToAuthor(question) {
 
-  console.log("ACTION", question);
-
   return {
     type: Actions.ADD_QUESTION_TO_AUTHOR,
     questionId : question.questionId,
