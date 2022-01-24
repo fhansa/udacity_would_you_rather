@@ -27,6 +27,25 @@ body {
   color:wheat;
 }
 
+.author {
+  display: flex;
+  width:80%;
+  border: 1px solid green;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.author p {
+  color:black;
+  margin-left:10px;
+}
+.avatar {
+  width:50px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
 .question-list-filter button {
   padding:10px;
   width:100px;
@@ -49,18 +68,54 @@ body {
   padding:0;
 }
 .question  {
-  width: 100%;
+  width: 80%;
   padding: 10px;
-  margin: 4px auto;
+  margin: 0 auto;
   border: 1px solid #dad7d7;
   border-radius: 3px;
+
 }
+.question h5 {
+  text-align: center;
+}
+.question a {
+  width:100%;
+  height:100%;
+  color: black;
+  text-decoration: none;
+}
+
+.question_selected {
+  color: darkgreen;
+  font-weight: bold;
+  text-decoration-line:underline;
+}
+
 
 .question-header {
   text-align: center;
 }
 
 .question-answers {
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*
+ *  Question Details
+ */
+.question-details {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+.question-details h3,
+.question-details h4 {
+  text-align: center;
+}
+
+.question-options {
   margin: 10px;
   display: flex;
   justify-content: space-between;

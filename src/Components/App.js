@@ -1,9 +1,10 @@
 import React from 'react';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useParams} from 'react-router-dom';
 import { connect } from 'react-redux';
 import QuestionList from './QuestionList';
 import AddQuestion from './AddQuestion';
-import Question from './Question';
+import QuestionDetails from './QuestionDetails';
+import Leaderboard from './Leaderboard';
 import NotFound from './NotFound';
 import NavMenu from './NavMenu';
 import Login from './Login';
@@ -17,9 +18,13 @@ class App extends React.Component {
     this.props.dispatch(getInitialData());
   }
 
-  render() {
+  
 
+  render() {
     const userid = this.props.loginUser.id;
+
+    console.log("USER", userid);
+    console.log(this.props);
 
     return (
       <div className="App">
@@ -28,11 +33,15 @@ class App extends React.Component {
           <Routes>
 
             { userid && <Route exact path="/" element={<QuestionList />}></Route> }
-            { !userid && <Route exact path="/" element={<Welcome />}></Route> }
-            <Route exact path="/add" element={<AddQuestion />}></Route>
-            <Route exact path="/question/:id" element={<Question />}></Route>
+            { userid && <Route exact path="/add" element={<AddQuestion />}></Route> }
+            { userid && <Route exact path="/leaderboard" element={<Leaderboard />}></Route> }
+            { userid && <Route exact path="/question/:questionId" element={<QuestionDetails />}></Route> }
+            { userid && <Route path="*" element={<NotFound />} /> }
+
             <Route exact path="/login" element={<Login />}></Route>
-            <Route path="*" element={<NotFound />} />
+            { !userid && <Route exact path="/" element={<Welcome />}></Route> }
+            { !userid && <Route path="*" element={<Login />} /> }
+
           </Routes>
           </div>
       </div>

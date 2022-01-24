@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 
 function QuestionList(props) {
 
-    const {qids} = props;
+    const {qids, qidsStatus} = props;
     const [filter, setFilter] = useState("unanswered")
     
     const handleFilterSelect = (filter) => {
       setFilter(filter);
     }
-
 
     return (
         <div className="question-container">
@@ -20,8 +19,10 @@ function QuestionList(props) {
           </div>
           <ul className="question-list">
               { 
-                  qids.map( (q) => (
-                      <li><Question key={q} id={q} /></li>
+                  // Present questions based on selected filter
+                  qids.filter( (f) => qidsStatus[f] === filter).map( (q) => (
+
+                      <li key={q}><Question id={q} status={filter}/></li>
                   ))
               }
           </ul>
@@ -30,12 +31,26 @@ function QuestionList(props) {
 
 }
 
-function mapProps ({ questions }) {
+function mapProps ({ questions, loginUser }) {
 
   const qids = Object.keys(questions).sort( (a,b) => questions[b].timestamp - questions[a].timestamp);
- 
+
+  // Create a dictionary containing the status for each question for current user
+  // I.e qidsResult[questionID] = status
+  // 
+  const qidsStatus = qids.reduce( (res, qid) => {
+    if (questions[qid].optionOne.votes.includes(loginUser.id) || 
+        questions[qid].optionTwo.votes.includes(loginUser.id)) {
+          res[qid] = "answered";
+        } else {
+          res[qid] = "unanswered";
+        }
+        return res;
+  }, {});
+  console.log(qidsStatus);
   return {
-    qids
+    qids, 
+    qidsStatus,
   }
 }
 

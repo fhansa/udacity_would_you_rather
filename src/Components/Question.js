@@ -1,24 +1,40 @@
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+/**
+ * Render one question
+ * 
+ * @param {*} props 
+ * @returns 
+ */
 function Question(props) {
-  const {question} = props;
-  console.log("QUESTION", props);
+  const {question, loginUser} = props;
+
+  const optionOneSelected = question.optionOne.votes.includes(loginUser.id);
+  const optionTwoSelected = question.optionTwo.votes.includes(loginUser.id);
+
   return (
     <div className="question">
-      <h4 className="question-header">Which is worse???</h4>
-      <div className="question-answers">
-        <span>{question && question.optionOne.text}</span>
-        
-        <span>{question && question.optionTwo.text}</span>
-      </div>
-    </div> 
+      <Link to={"question/" + question.id }>
+        <h4 className="question-header">Which is worse???</h4>
+        <div className="question-answers">
+          <span className={optionOneSelected && 'question_selected' }>{question && question.optionOne.text}</span>
+          
+          <span className={optionTwoSelected && 'question_selected' }>{question && question.optionTwo.text}</span>
+        </div>
+      </Link> 
+    </div>
   )
 
 }
 
-function mapProps({questions}, props) {
+/**
+ *  Map the requested question to component's props
+ */
+function mapProps({questions, loginUser}, props) {
   return ( {
-    question: questions[props.id]
+    question: questions[props.id],
+    loginUser
   })
 }
 
