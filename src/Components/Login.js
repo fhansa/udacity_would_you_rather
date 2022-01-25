@@ -1,6 +1,6 @@
 import {useState, useRef} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { loginUser } from '../actions/users';
 
@@ -11,13 +11,19 @@ export default function Login(props) {
   const [selectedUser, setSelectedUser] = useState(null);
   const button = useRef();
   const navigate = useNavigate()
+  const location = useLocation()
 
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (selectedUser) {
-      dispatch(loginUser(selectedUser))
-      navigate("/")
+      dispatch(loginUser(selectedUser));
+      console.log(location);
+
+      const redirectTo = location.pathname === "/login" ? "/" : location.pathname;
+
+      navigate(redirectTo)
     }
    }
 

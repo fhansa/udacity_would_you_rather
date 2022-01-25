@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { placeVote } from '../actions/questions';
 import { addAnswerToUser } from '../actions/users';
 import Avatar from './Avatar';
+import NotFound from './NotFound';
 
 /**
  * Render one question
@@ -16,6 +17,13 @@ function QuestionDetails(props) {
   const nav = useNavigate();
 
   const {question, author, questionStatus, currentUser} = props;
+
+  console.log("QUESTION", question);
+
+  if (question === undefined) {
+    return <NotFound />
+  }
+
 
   const optionOneVotes = question.optionOne.votes.length;
   const optionTwoVotes = question.optionTwo.votes.length;
@@ -99,9 +107,9 @@ function mapProps({questions, users, loginUser}, props) {
   const {questionId} = props.params;  // "Hack" - se below....
 
   const question = questions[questionId];
-  const author = users[question.author];
+  const author = question && users[question.author];
   const currentUser = users[loginUser.id];
-  const questionStatus = Object.keys(currentUser.answers).includes(questionId) ? "answered" : "unanswered";
+  const questionStatus = question && Object.keys(currentUser.answers).includes(questionId) ? "answered" : "unanswered";
 
   return (
     {

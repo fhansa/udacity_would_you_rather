@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 /**
  * Render one question
@@ -9,13 +9,18 @@ import { Link } from 'react-router-dom';
  */
 function Question(props) {
   const {question, loginUser} = props;
+  const nav = useNavigate();
 
   const optionOneSelected = question.optionOne.votes.includes(loginUser.id);
   const optionTwoSelected = question.optionTwo.votes.includes(loginUser.id);
 
+  if(question === undefined) {
+    nav('/notfound');
+  }
+
   return (
     <div className="question">
-      <Link to={"question/" + question.id }>
+      <Link to={"questions/" + question.id }>
         <h4 className="question-header">Which is worse???</h4>
         <div className="question-answers">
           <span className={optionOneSelected ? 'question_selected' : "" }>{question && question.optionOne.text}</span>

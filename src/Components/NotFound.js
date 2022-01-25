@@ -3,7 +3,7 @@ export default function NotFound(props) {
 
     return (
         <div>
-          NotFound
+          404 - Page not found.
         </div>
     )
 

@@ -36,7 +36,7 @@ class App extends React.Component {
             { userid && <Route exact path="/" element={<QuestionList />}></Route> }
             { userid && <Route exact path="/add" element={<AddQuestion />}></Route> }
             { userid && <Route exact path="/leaderboard" element={<Leaderboard />}></Route> }
-            { userid && <Route exact path="/question/:questionId" element={<QuestionDetails />}></Route> }
+            { userid && <Route exact path="/questions/:questionId" element={<QuestionDetails />}></Route> }
             { userid && <Route path="*" element={<NotFound />} /> }
 
             <Route exact path="/login" element={<Login />}></Route>
